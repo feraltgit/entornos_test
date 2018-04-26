@@ -1,0 +1,45 @@
+
+package com.JUnit.Luis;
+
+import org.junit.Assert;
+
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.*;
+
+public class SumaTest {
+
+    @org.junit.Test
+    public void sumar() throws Exception {
+        int n1 = 2;
+        int n2 = 3;
+        int expected = 5;
+
+        Suma testActual=new Suma(n1,n2);
+        int actual=testActual.sumar();
+        assertEquals(expected, actual, 0.000);
+    }
+
+    @org.junit.Test
+    public void sumar2() throws Exception {
+
+        int n1 = -2;
+        int n2 = -3;
+        int expected = -6;
+
+        Suma testActual=new Suma(n1,n2);
+        int actual=testActual.sumar();
+        assertNotEquals(expected,actual,0.000);
+    }
+
+    @org.junit.Test
+    public void sumar3() throws Exception {
+
+        int n1 = 2;
+        int n2 = -3;
+        int expected = -1;
+
+        Suma testActual=new Suma(n1,n2);
+        int actual=testActual.sumar();
+        assertEquals(expected, actual, 0.000);
+    }
+}
