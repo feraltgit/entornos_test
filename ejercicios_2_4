@@ -83,7 +83,7 @@ public class SimpleCalculatorTest {
         Assert.assertArrayEquals(arrayFloats, arrayFloats2,0);
     }
 
-    //Comprobamos la excepsion del 0 en el denominador.
+    //Comprobamos la exception del 0 en el denominador.
     @Test(expected = Exception.class)
     public void divide3() throws Exception {
         float n1 = 7;
