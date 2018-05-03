@@ -1,0 +1,131 @@
+package com.JUnit.intellj.test;
+
+import org.junit.*;
+
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.*;
+
+public class SimpleCalculatorTest {
+
+    private SimpleCalculator calculator;
+
+    @Before
+    public void setUp() throws Exception {
+        this.calculator = new SimpleCalculator();
+    }
+
+    //Ejercicio 2 para entregar
+
+    //Da test valido.
+    @Test
+    public void add2() throws Exception {
+        float n1 = 7;
+        float n2 = 6;
+        float expected = 14;
+
+        boolean resultado=false;
+
+        if (this.calculator.add(n1, n2)==expected){
+            resultado=true;
+        }
+
+        Assert.assertTrue(resultado);
+    }
+
+    //Cambiando el delta se puede cambiar el margen de error. Por ejemplo, este test da correcto porque tiene un margen de
+    //error de 2.
+    @Test
+    public void subtract2() throws Exception {
+        float n1 = 7;
+        float n2 = 6;
+        float expected = 3;
+
+        float actual;
+        actual = this.calculator.subtract(n1, n2);
+
+        assertEquals(expected,actual,2.000);
+    }
+
+    //Comprobación de resultado correcto utilizando boolean.
+    @Test
+    public void multiply2() throws Exception {
+        float n1 = 7;
+        float n2 = 6;
+        float expected = 42;
+        boolean estaBien;
+
+        float actual;
+        actual = this.calculator.multiply(n1, n2);
+
+        if (actual==expected){
+            estaBien=true;
+        }else{
+            estaBien=false;
+        }
+
+        Assert.assertTrue(estaBien);
+    }
+
+    //Comprobación con assertArrayEquals.
+    @Test
+    public void divide2() throws Exception {
+        float n1 = 7;
+        float n2 = 6;
+        float expected = 1.1666666f;
+
+        float actual;
+        actual = this.calculator.divide(n1, n2);
+
+
+        float[] arrayFloats={actual};
+        float[] arrayFloats2={expected};
+
+        Assert.assertArrayEquals(arrayFloats, arrayFloats2,0);
+    }
+
+    //Comprobamos la excepsion del 0 en el denominador.
+    @Test(expected = Exception.class)
+    public void divide3() throws Exception {
+        float n1 = 7;
+        float n2 = 0;
+
+        float actual;
+        actual = this.calculator.divide(n1, n2);
+
+    }
+
+
+    //Ejercicio 4
+
+    @Test
+    public void isEvenNumber1 () {
+        int n1 = 4;
+
+        boolean actualEsPar = this.calculator.isEvenNumber(n1);
+
+        assertTrue(actualEsPar);
+    }
+
+    @Test
+    public void isEvenNumber2 () {
+        int n1 = 6;
+
+        assertEquals(this.calculator.isEvenNumber(n1),true);
+
+    }
+
+    @Test
+    public void isEvenNumber3 () {
+        int n1 = 5;
+
+        boolean actualEsPar = this.calculator.isEvenNumber(n1);
+
+        assertFalse(actualEsPar);
+    }
+
+    @Test
+    public void isEvenNumber4 () {
+        int n1 = 7;
+
+        assertEquals(this.calculator.isEvenNumber(n1),false);
+    }
