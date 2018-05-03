@@ -1,0 +1,49 @@
+package com.JUnit.Luis;
+
+import org.junit.*;
+
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.*;
+
+public class EmployeeTest {
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        Employee IES=new Employee(2,"Miguel",10000);
+    }
+
+    @Test
+    public void getEmpNameWithHighestSalary() throws Exception {
+        String resultado_Esperado="Marina";
+
+        assertEquals(resultado_Esperado,Employee.getEmpNameWithHighestSalary());
+    }
+
+    @Test
+    public void getHighestPaidEmployee() throws Exception {
+        assertSame(Employee.getEmpNameWithHighestSalary(),Employee.getHighestPaidEmployee().getName());
+
+    }
+
+    @Test
+    public void getName() throws Exception {
+        Assert.assertEquals(Employee.getHighestPaidEmployee().getName(),"Miguel");
+    }
+
+    @Test
+    public void getEmpId() throws Exception {
+        Assert.assertNull(Employee.getHighestPaidEmployee().getEmpId());
+    }
+
+    @Test
+    public void getSalary() throws Exception {
+        assertNotEquals(Employee.getHighestPaidEmployee().getSalary(),30000);
+    }
+
+    @Ignore("En pruebas")
+    @Test
+    public void getEmpNameWithHighestSalary2() throws Exception {
+        String resultado_Esperado="Marina";
+
+        assertEquals(resultado_Esperado,Employee.getEmpNameWithHighestSalary());
+    }
