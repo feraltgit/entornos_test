@@ -1,0 +1,44 @@
+package com.JUnit.Luis;
+
+import org.junit.*;
+
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.*;
+
+public class EmployeeTest {
+
+    private Employee IES_Miguel;
+    private Employee IES_Juan;
+    private Employee IES_Puri;
+    private Employee IES_Jose;
+
+    @Before
+    public void setUp() throws Exception {
+        this.IES_Miguel = new Employee(2, "Miguel", 10000);
+        this.IES_Juan = new Employee(3, "Juan Carlos", 6500);
+        this.IES_Puri = new Employee(4, "Jose Antonio", 1000);
+        this.IES_Jose = new Employee(5, "Puri", 12000);
+    }
+
+    //Si el test da positivo es que la clave tiene valores. Si el test da negativo es que la clave no tiene valores.
+    @Test
+    public void comprobarClave3() {
+        assertNotNull(this.IES_Miguel.getPropValue("key3"));
+    }
+
+    @Test
+    public void comprobarClave9() {
+        assertNull(this.IES_Juan.getPropValue("key9"));
+    }
+
+    @Test
+    public void comprobarMismoValorClaves2_4() {
+        assertTrue(this.IES_Puri.getPropValue("key2").equals(this.IES_Puri.getPropValue("key4")));
+    }
+
+    //Este test debe dar error.
+    @Test
+    public void comprobarMismoValorClaves1_2() {
+        assertEquals(this.IES_Jose.getPropValue("key1"), (this.IES_Jose.getPropValue("key2")));
+    }
+}
