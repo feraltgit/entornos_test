@@ -1,0 +1,60 @@
+package com.JUnit.test;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class MainTest {
+
+    @Test
+    public void cadena_vacia_version_2() {
+        Assert.assertTrue(Main.captureItemsBetweenDashes("").isEmpty());
+    }
+
+    @Test
+    public void cadena_guion_version_2() {
+            Assert.assertTrue(Main.captureItemsBetweenDashes("-").isEmpty());
+    }
+
+    @Test
+    public void cadena_guion_doble_version_2() {
+            Assert.assertTrue(Main.captureItemsBetweenDashes("--").isEmpty());
+    }
+
+    @Test
+    public void cadena_1_version_2() {
+        String lista_actual=Main.captureItemsBetweenDashes("-1-").get(0);
+        int longitud=Main.captureItemsBetweenDashes("-1-").size();
+        Assert.assertTrue(longitud == 1 && lista_actual.equals("1") && lista_actual != null);
+    }
+
+    @Test
+    public void cadena_1_dos_guiones_version_2() {
+        String lista_actual=Main.captureItemsBetweenDashes("-1--").get(0);
+        int longitud=Main.captureItemsBetweenDashes("-1--").size();
+        Assert.assertTrue(longitud == 1 && lista_actual.equals("1") && lista_actual != null);
+    }
+
+    @Test
+    public void cadena_2_dos_guiones_version_2() {
+        String lista_actual=Main.captureItemsBetweenDashes("--2-").get(0);
+        int longitud=Main.captureItemsBetweenDashes("--2-").size();
+        Assert.assertTrue(longitud == 1 && lista_actual.equals("2") && lista_actual != null);
+    }
+
+    @Test
+    public void cadena_1_aaa_3_version_2() {
+        String lista_actual=Main.captureItemsBetweenDashes("1-aaa-3").get(0);
+        int longitud=Main.captureItemsBetweenDashes("1-aaa-3").size();
+        Assert.assertTrue(longitud == 1 && lista_actual.equals("aaa") && lista_actual != null);
+    }
+
+    @Test
+    public void cadena_guion_1_aaa_3_guion_version_2() {
+        String primera_cadena=Main.captureItemsBetweenDashes("-1-aaa-3-").get(0);
+        String segunda_cadena=Main.captureItemsBetweenDashes("-1-aaa-3-").get(1);
+        int longitud=Main.captureItemsBetweenDashes("-1-aaa-3-").size();
+        Assert.assertTrue(longitud == 2 && primera_cadena.equals("1")
+                && segunda_cadena.equals("3") && primera_cadena != null &&
+                segunda_cadena != null);
+    }
+}
