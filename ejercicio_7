@@ -1,0 +1,135 @@
+package com.JUnit.test;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class MainTest {
+
+    //La cadena "" devuelve un null.
+    @Test
+    public void cadena_vacia() {
+        for (String actual_cadena:
+                Main.captureItemsBetweenDashes("")) {
+            Assert.assertNull(actual_cadena);
+        }
+    }
+
+    //La cadena - devuelve un null.
+    @Test
+    public void cadena_guion() {
+        for (String actual_cadena:
+                Main.captureItemsBetweenDashes("-")) {
+            Assert.assertNull(actual_cadena);
+        }
+    }
+
+    //La cadena -- devuelve un null.
+    @Test
+    public void cadena_guion_doble() {
+        for (String actual_cadena:
+                Main.captureItemsBetweenDashes("--")) {
+            Assert.assertNull(actual_cadena);
+        }
+    }
+
+    //No se realizará el test de nulidad (si es null o no). Si la cadena es "1",
+    //no puede ser null al mismo tiempo.
+    @Test
+    public void cadena_1() {
+        boolean cumple_condiciones=false;
+        int contador_loguitud=0;
+        for (String actual_cadena:
+                Main.captureItemsBetweenDashes("-1-")) {
+            contador_loguitud++;
+            if (actual_cadena.length()==1 && actual_cadena.equals("1")){
+                cumple_condiciones=true;
+            }
+        }
+        if (contador_loguitud != 1){
+            cumple_condiciones=false;
+        }
+        Assert.assertTrue(cumple_condiciones);
+    }
+
+    //Igual que el anterior. No se cumprueba si es null o no.
+    @Test
+    public void cadena_1_dos_guiones() {
+        boolean cumple_condiciones=false;
+        int contador_loguitud=0;
+        for (String actual_cadena:
+                Main.captureItemsBetweenDashes("-1--")) {
+            contador_loguitud++;
+            if (actual_cadena.length()==1 && actual_cadena.equals("1")){
+                cumple_condiciones=true;
+            }
+        }
+        if (contador_loguitud != 1){
+            cumple_condiciones=false;
+        }
+        Assert.assertTrue(cumple_condiciones);
+    }
+
+    //Igual que los dos anteriores, no se cumprueba si es null o no.
+    @Test
+    public void cadena_2_dos_guiones() {
+        boolean cumple_condiciones=false;
+        int contador_loguitud=0;
+        for (String actual_cadena:
+                Main.captureItemsBetweenDashes("--2-")) {
+            contador_loguitud++;
+            if (actual_cadena.length()==1 && actual_cadena.equals("2")){
+                cumple_condiciones=true;
+            }
+        }
+        if (contador_loguitud != 1){
+            cumple_condiciones=false;
+        }
+        Assert.assertTrue(cumple_condiciones);
+    }
+
+    //Tampoco se comprueba nulidad.
+    @Test
+    public void cadena_1_aaa_3() {
+        boolean cumple_condiciones=false;
+        int contador_loguitud=0;
+        for (String actual_cadena:
+                Main.captureItemsBetweenDashes("1-aaa-3")) {
+            contador_loguitud++;
+            if (actual_cadena.length()==3 && actual_cadena.equals("aaa")){
+                cumple_condiciones=true;
+            }
+        }
+        if (contador_loguitud != 1){
+            cumple_condiciones=false;
+        }
+        Assert.assertTrue(cumple_condiciones);
+    }
+
+    //En los anteriores test se ha comenzado con la variable "bandera" en true
+    //y si no cumplía alguna condición esta pasaba a false. En este test se ha
+    //utilizado el método contrario.
+    //Tampoco se comprueba nulidad.
+    @Test
+    public void cadena_guion_1_aaa_3_guion() {
+        boolean cumple_condiciones=true;
+        int contador_loguitud=0;
+        for (String actual_cadena:
+                Main.captureItemsBetweenDashes("-1-aaa-3-")) {
+            contador_loguitud++;
+            switch (actual_cadena){
+                case "1":
+                    if (contador_loguitud != 1 && actual_cadena.length() != 1){
+                        cumple_condiciones=false;
+                    }
+                case "3":
+                    if (contador_loguitud != 2 && actual_cadena.length() != 1){
+                        cumple_condiciones=false;
+                    }
+            }
+        }
+        if (contador_loguitud != 2){
+            cumple_condiciones=false;
+        }
+        Assert.assertTrue(cumple_condiciones);
+    }
+}
